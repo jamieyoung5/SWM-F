@@ -96,7 +96,7 @@ A city report requires the following columns:
 
 A capital city report requires the following columns:
 
-- Name.
+- Name. 
 - Country.
 - Population.
 
