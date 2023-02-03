@@ -5,6 +5,9 @@ import java.sql.*;
 public class App {
             public static void main(String[] args) throws SQLException {
                         DatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager();
-                        databaseConnectionManager.CreateConnection();
+                        Connection connection = databaseConnectionManager.CreateConnection();
+                        
+                        ISqlQueryService sqlQueryService = new SqlQueryService();
+                        sqlQueryService.ExecuteQuery(connection);
             }
 }
