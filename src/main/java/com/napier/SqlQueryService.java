@@ -7,13 +7,13 @@ import java.sql.Statement;
 
 public class SqlQueryService implements ISqlQueryService{
             
-            public SqlQueryService(){
+        public SqlQueryService(){
             
-            }
+        }
             
-            public void ExecuteQuery(Connection connection) throws SQLException {
-                        Statement statement = connection.createStatement();
-                        ResultSet resultSet = statement.executeQuery("SELECT * FROM city");
-                        System.out.println(resultSet.toString());
-            }
+        public void ExecuteQuery(Connection connection) throws SQLException {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM city");
+                System.out.println(resultSet.toString());
+        }
 }

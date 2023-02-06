@@ -2,12 +2,12 @@ package com.napier;
 
 public class ReportBuilder implements IReportBuilder{
             
-            public ReportBuilder(){
+        public ReportBuilder(){
             
-            }
+        }
             
-            @Override
-            public void BuildReport() {
+        @Override
+        public void BuildReport() {
             
-            }
+        }
 }
