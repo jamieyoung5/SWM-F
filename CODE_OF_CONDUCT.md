@@ -1,13 +1,13 @@
-# Code of Coduct 
+# Code of Conduct 
 
-# Our Standards
+## Our Standards
 
 - Everyone is respectful in others opinions/ideas.
 
 - Gracefully accepting constructive criticism.
 
-- Taking opinions onboard and no conflicts.
+- Taking team members opinions onboard and not conflicting with eachother.
 
-- Not PRs can be merged without an approval.
+- No PRs can be merged without an approval.
 
 - Not showing up to calls results in catching up in your own time.
