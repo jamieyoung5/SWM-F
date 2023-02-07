@@ -40,6 +40,7 @@ https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
 <li>The population of people, people living in cities, and people not living in cities in each region.</li>
 <li>The population of people, people living in cities, and people not living in cities in each country.</li>
 </ol>
+
 #### Additionally, the following information should be accessible to the organisation:
 
     The population of the world.
