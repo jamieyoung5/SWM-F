@@ -5,14 +5,10 @@ import java.sql.*;
 public class DatabaseConnectionManager implements IDatabaseConnectionManager {
         
         private static final String JDBC_SQL_DRIVER = "com.mysql.cj.jdbc.Driver";
-        private static final String DATABASE_USER = "root"; //TO-DO: put this in a config
-        private static final String DATABASE_PASS = "my-secret-pw"; //TO-DO: put this in a config
-        private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/world"; //TO-DO: put this somewhere else as well
         private static final int MAX_CONNECTION_ATTEMPTS = 3;
-            
-            
+        
         public DatabaseConnectionManager() {
-            
+        
         }
             
         @Override
@@ -40,7 +36,7 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
             
         private Connection ConnectionAttempt() {
                 try {
-                        return DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASS);
+                        return DriverManager.getConnection(Config.DATABASE_URL, Config.DATABASE_USER, Config.DATABASE_PASS);
                 } catch (SQLException exception) {
                         return null;
                 }
