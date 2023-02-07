@@ -6,6 +6,7 @@ public class App {
         DatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager();
         Connection connection = databaseConnectionManager.CreateConnection();
         
+        
         ISqlQueryService sqlQueryService = new SqlQueryService();
         sqlQueryService.ExecuteQuery(connection);
     }
