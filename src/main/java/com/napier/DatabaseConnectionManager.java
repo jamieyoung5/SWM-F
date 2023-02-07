@@ -10,7 +10,8 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     public DatabaseConnectionManager() {
     
     }
-        
+    
+    //Try and create a connection to a given database
     @Override
     public Connection CreateConnection() {
         VerifyDriver();
@@ -22,7 +23,8 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
                 
         return connection;
     }
-        
+    
+    //Attempt a certain amount of times to create a connection to a database
     private Connection EstablishDatabaseConnection(){
         int connectionAttempts = 0;
         Connection connection;
@@ -33,7 +35,8 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
                 
         return connection;
     }
-        
+    
+    //Attempt to get a connection to a database
     private Connection ConnectionAttempt() {
         try {
             return DriverManager.getConnection(Config.DATABASE_URL, Config.DATABASE_USER, Config.DATABASE_PASS);
@@ -41,7 +44,8 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
             return null;
         }     
     }
-        
+    
+    // Make sure that the correct jdbc drivers are present
     private void VerifyDriver() {
         try {
             Class.forName(DatabaseConnectionManager.JDBC_SQL_DRIVER);
