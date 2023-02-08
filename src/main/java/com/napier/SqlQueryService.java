@@ -10,7 +10,8 @@ public class SqlQueryService implements ISqlQueryService{
     public SqlQueryService(){
         
     }
-        
+    
+    // Execute a test query via a given connection
     public void ExecuteQuery(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM city");
