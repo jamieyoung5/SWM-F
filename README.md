@@ -1,6 +1,6 @@
 # SWM-F
 
-A program that builds reports based on data stored in a database. Testt2
+Our team will develop a program that builds reports based on data stored in a database.
 
 ## Programming standards
 
