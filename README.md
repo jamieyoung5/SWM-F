@@ -1,6 +1,6 @@
 # SWM-F
 
-A program that builds reports based on data stored in a database
+Our group have collaborated to help develop a program that builds reports based on data stored in a database.
 
 ## Programming standards
 
@@ -50,7 +50,7 @@ https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
     The population of a district.
     The population of a city.
 
-#### Finally, the organisation has asked if it is possible to provide the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population:
+#### Finally, the organisation has asked if it is possible to provide the number of people who speak the following languages, from greatest number to smallest, including the percentage of the world population:
 
     Chinese.
     English.
