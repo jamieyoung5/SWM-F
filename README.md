@@ -1,4 +1,4 @@
-# SWM-F
+# SWM-Group F
 
 Our group have collaborated to help develop a program that builds reports based on data stored in a database.
 
