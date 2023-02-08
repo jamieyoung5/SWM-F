@@ -1,11 +1,15 @@
 # SWM-F
 
-We will implement a program that builds reports based on data stored in a database
+We will implement a program using project management tools that builds reports based on data stored in a database.
+
+The specification of this assignment can be found [here](spec.md).
 
 ## Programming standards
 
 This project follows the Oracle coding conventions, which you can find here 
 https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
+
+We also have a code of conduct to refer to: [Our Code of Conduct](CODE_OF_CONDUCT.md)
 
 ## How to build
 
