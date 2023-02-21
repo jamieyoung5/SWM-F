@@ -8,7 +8,11 @@ SELECT Name, Region, Population FROM country WHERE Region = 'Caribbean' ORDER BY
 
 /*All the cities in the world ordered by x*/
 SELECT Name, CountryCode, Population from city ORDER BY Population desc;
-SELECT Name, Continent, Population FROM city WHERE Continent = 'Europe' ORDER BY Population desc ;
+SELECT Name, Continent, Population FROM city WHERE Continent = 'Europe' ORDER BY Population desc;
+Select city.Name, city.Population, c.Region from city JOIN country c on city.CountryCode = c.Code where Region = 'Caribbean' ORDER BY Population desc;
+Select city.Name, city.Population, c.Name from city JOIN country c on city.CountryCode = c.Code where c.Name = 'Belgium' ORDER BY Population desc;
+Select city.Name, city.Population, city.District from city where city.District = 'Toscana' ORDER BY Population desc;
+
 
 /*Total population*/
 SELECT SUM(Population) AS "World Population" FROM country;
@@ -18,4 +22,4 @@ SELECT Population AS "Dutch Population" FROM country WHERE Name = 'Netherlands';
 
 /*Total pop in and out of cities (THIS IS VERY JANKY AND NEEDS CLEANED UP, JUST POC)*/
 SELECT ROUND((SUM(city.Population)/(SELECT country.Population FROM country WHERE country.Name = "Belgium"))*100, 2) AS 'Percentage in Cities' FROM city JOIN country on Code = city.CountryCode WHERE country.Name = "Belgium";
-SELECT ROUND((((SELECT country.Population FROM country WHERE country.Name = "Belgium")-(SUM(city.Population)))/(SELECT country.Population FROM country WHERE country.Name = "Belgium"))*100, 2) AS 'Percentage out of Cities' FROM city JOIN country on Code = city.CountryCode WHERE country.Name = "Belgium";
+SELECT ROUND((((SELECT country.Population FROM country WHERE country.Name = "Belgium")  -(SUM(city.Population)))/(SELECT country.Population FROM country WHERE country.Name = "Belgium"))*100, 2) AS 'Percentage out of Cities' FROM city JOIN country on Code = city.CountryCode WHERE country.Name = "Belgium";
