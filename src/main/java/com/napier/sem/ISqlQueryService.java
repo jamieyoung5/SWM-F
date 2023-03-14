@@ -1,4 +1,4 @@
-package com.napier;
+package com.napier.sem;
 
 import java.sql.Connection;
 import java.sql.SQLException;
