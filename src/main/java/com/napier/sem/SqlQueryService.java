@@ -10,12 +10,14 @@ public class SqlQueryService implements ISqlQueryService{
     public SqlQueryService(){
         
     }
-    
+
+
     // Execute a test query via a given connection
-    public void ExecuteQuery(Connection connection) throws SQLException {
+    @Override
+    public String ExecuteQuery(Connection connection, String query) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM city");
+        ResultSet resultSet = statement.executeQuery(query);
         
-        System.out.println(resultSet.toString());
+        return resultSet.toString();
     }
 }

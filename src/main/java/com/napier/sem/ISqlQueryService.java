@@ -4,5 +4,5 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public interface ISqlQueryService {
-    void ExecuteQuery(Connection connection) throws SQLException;
+    String ExecuteQuery(Connection connection, String query) throws SQLException;
 }
