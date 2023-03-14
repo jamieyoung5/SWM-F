@@ -1,4 +1,4 @@
-package com.napier;
+package com.napier.sem;
 
 //TO-DO: add values to a proper .config file that is handled here
 public class Config {
