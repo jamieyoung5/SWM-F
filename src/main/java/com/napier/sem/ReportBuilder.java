@@ -1,4 +1,4 @@
-package com.napier;
+package com.napier.sem;
 
 public class ReportBuilder implements IReportBuilder{
             
