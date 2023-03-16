@@ -1,9 +1,14 @@
 package com.napier.sem;
+import java.io.IOException;
 import java.sql.*;
 
 public class App {
-    public static void main(String[] args) throws SQLException {
-        DatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager();
-        ISqlQueryService sqlQueryService = new SqlQueryService();
+    public static void main(String[] args) throws SQLException, IOException, InterruptedException {
+        System.out.println("test");
+        IDatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager();
+        Connection connection = databaseConnectionManager.CreateConnection();
+        IReportCreator reportCreator = new ReportCreator(connection);
+        reportCreator.CreateReport();
+        
     }
 }

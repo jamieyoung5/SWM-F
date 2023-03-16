@@ -44,5 +44,4 @@ public class QueryParser implements IQueryParser {
                 entry("query",splitQuery[1])
         );
     }
-
 }

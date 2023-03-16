@@ -13,7 +13,7 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     
     //Try and create a connection to a given database
     @Override
-    public Connection CreateConnection() {
+    public Connection CreateConnection() throws InterruptedException {
         VerifyDriver();
         Connection connection = EstablishDatabaseConnection();
                 
@@ -25,10 +25,11 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
     
     //Attempt a certain amount of times to create a connection to a database
-    private Connection EstablishDatabaseConnection(){
+    private Connection EstablishDatabaseConnection() throws InterruptedException {
         int connectionAttempts = 0;
         Connection connection;
         do {
+            Thread.sleep(5000);
             connection = ConnectionAttempt();
             connectionAttempts++;
         } while (connectionAttempts < MAX_CONNECTION_ATTEMPTS && connection != null);
