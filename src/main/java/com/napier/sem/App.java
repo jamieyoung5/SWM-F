@@ -7,7 +7,7 @@ public class App {
         System.out.println("test");
         IDatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager();
         Connection connection = databaseConnectionManager.CreateConnection();
-        IReportCreator reportCreator = new ReportCreator(connection);
+        IReportCreator reportCreator = new ReportCreator(connection, new QueryParser(), new SqlQueryService(), new ReportDisplayer());
         reportCreator.CreateReport();
         
     }

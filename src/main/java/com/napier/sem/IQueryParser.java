@@ -1,9 +1,11 @@
 package com.napier.sem;
 
+import com.napier.sem.models.ReportQuery;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 public interface IQueryParser {
-    public List<Map<String, String>> ParseQueries(String pathToQueries) throws IOException;
+    List<ReportQuery> ParseQueries(String pathToQueries) throws IOException;
 }

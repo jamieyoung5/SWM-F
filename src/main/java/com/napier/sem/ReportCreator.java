@@ -1,27 +1,28 @@
 package com.napier.sem;
 
+import com.napier.sem.models.ReportQuery;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-
+ 
 public class ReportCreator implements IReportCreator {
 
-    private final IQueryParser queryParser;
-    private final ISqlQueryService sqlQueryService;
-    private final IReportDisplayer reportDisplayer;
+    private final IQueryParser _queryParser;
+    private final ISqlQueryService _sqlQueryService;
+    private final IReportDisplayer _reportDisplayer;
     private final Connection _connection;
     
     private final String SQL_PATH = "../../../sql";
     
-    public ReportCreator(Connection connection){
+    public ReportCreator(Connection connection, IQueryParser queryParser, ISqlQueryService sqlQueryService, IReportDisplayer reportDisplayer){
         _connection = connection;
-        queryParser = new QueryParser();
-        sqlQueryService = new SqlQueryService();
-        reportDisplayer = new ReportDisplayer();
+        _queryParser = queryParser;
+        _sqlQueryService = sqlQueryService;
+        _reportDisplayer = reportDisplayer;
     }
     
     @Override
@@ -30,17 +31,17 @@ public class ReportCreator implements IReportCreator {
         File [] sqlFiles = pathToSqlFiles.listFiles();
         for(int i = 0; i < Objects.requireNonNull(sqlFiles).length; i++){
             if(sqlFiles[i].isFile()){
-                List<Map<String, String>> queryResultQueue = RunQueryQueue(sqlFiles[i].getAbsolutePath());
-                reportDisplayer.displayReport(queryResultQueue, sqlFiles[i].getName());
+                List<ReportQuery> queryResultQueue = RunQueryQueue(sqlFiles[i].getAbsolutePath());
+                _reportDisplayer.displayReport(queryResultQueue, sqlFiles[i].getName());
             }
         }
     }
     
-    private List<Map<String, String>> RunQueryQueue(String queryPath) throws IOException, SQLException {
-        List<Map<String, String>> parsedQueries = queryParser.ParseQueries(queryPath);
-        for(Map<String, String> query : parsedQueries) {
-            String resultSet = sqlQueryService.ExecuteQuery(_connection, query.get("query"));
-            query.put("result", resultSet);
+    private List<ReportQuery> RunQueryQueue(String queryPath) throws IOException, SQLException {
+        List<ReportQuery> parsedQueries = _queryParser.ParseQueries(queryPath);
+        for(ReportQuery query : parsedQueries) {
+            String resultSet = _sqlQueryService.ExecuteQuery(_connection, query.getQuery());
+            query.setResult(resultSet);
         }
 
         return parsedQueries;
