@@ -10,32 +10,29 @@ import java.util.Objects;
 
 public class ReportCreator implements IReportCreator {
 
-    private final QueryParser queryParser = new QueryParser();
-    private final SqlQueryService sqlQueryService = new SqlQueryService();
+    private final IQueryParser queryParser;
+    private final ISqlQueryService sqlQueryService;
+    private final IReportDisplayer reportDisplayer;
     private final Connection _connection;
     
-    private final String sqlPath = "../../../sql";
+    private final String SQL_PATH = "../../../sql";
     
     public ReportCreator(Connection connection){
         _connection = connection;
+        queryParser = new QueryParser();
+        sqlQueryService = new SqlQueryService();
+        reportDisplayer = new ReportDisplayer();
     }
     
     @Override
     public void CreateReport() throws IOException, SQLException {
-        File pathToSqlFiles= new File(sqlPath);
+        File pathToSqlFiles= new File(SQL_PATH);
         File [] sqlFiles = pathToSqlFiles.listFiles();
         for(int i = 0; i < Objects.requireNonNull(sqlFiles).length; i++){
             if(sqlFiles[i].isFile()){
                 List<Map<String, String>> queryResultQueue = RunQueryQueue(sqlFiles[i].getAbsolutePath());
-                DisplayQueryQueue(queryResultQueue, sqlFiles[i].getName());
+                reportDisplayer.displayReport(queryResultQueue, sqlFiles[i].getName());
             }
-        }
-    }
-    
-    private void DisplayQueryQueue(List<Map<String, String>> queryResultQueue, String filename) {
-        System.out.println("========"+filename+"=======");
-        for (Map<String, String> queryResult : queryResultQueue) {
-            System.out.println(queryResult.get("result"));
         }
     }
     
