@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class DatabaseConfig {
 
-    private static final String CONFIG_FILE = "config.properties";
+    private static final String CONFIG_FILE = "/config.properties";
     private final Properties properties;
 
     /**
