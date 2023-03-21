@@ -1,0 +1,6 @@
+com/napier/sem/unit_tests/UserInputParserTest.class
+com/napier/sem/unit_tests/SqlQueryServiceTest.class
+com/napier/sem/unit_tests/ReportDisplayerTest.class
+com/napier/sem/unit_tests/QueryParserTest.class
+com/napier/sem/unit_tests/ReportCreatorTest.class
+com/napier/sem/database/DatabaseConnectionManagerIntegrationTest.class
