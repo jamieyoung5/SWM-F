@@ -12,7 +12,11 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     public DatabaseConnectionManager(DatabaseConfig config) {
         this.config = config;
     }
-    
+
+    /**
+     * @return
+     * @throws InterruptedException
+     */
     //Try and create a connection to a given database
     @Override
     public Connection CreateConnection() throws InterruptedException {

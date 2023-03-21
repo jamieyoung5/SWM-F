@@ -9,6 +9,12 @@ public class SqlQueryService implements ISqlQueryService{
     }
 
 
+    /**
+     * @param connection
+     * @param query
+     * @return
+     * @throws SQLException
+     */
     // Execute a test query via a given connection
     @Override
     public String executeQuery(Connection connection, String query) throws SQLException {

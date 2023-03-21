@@ -6,6 +6,9 @@ import java.util.List;
 
 public class ReportDisplayer implements IReportDisplayer {
 
+    /**
+     * @param report
+     */
     @Override
     public void displayReport(List<ReportQuery> report) {
         for (ReportQuery queryResult : report) {

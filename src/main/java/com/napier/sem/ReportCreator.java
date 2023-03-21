@@ -20,20 +20,37 @@ public class ReportCreator implements IReportCreator {
     private final Connection _connection;
     
     private final String SQL_PATH = "scripts.sql";
-    
+
+    /**
+     * @param connection
+     * @param queryParser
+     * @param sqlQueryService
+     * @param reportDisplayer
+     */
     public ReportCreator(Connection connection, IQueryParser queryParser, ISqlQueryService sqlQueryService, IReportDisplayer reportDisplayer){
         _connection = connection;
         _queryParser = queryParser;
         _sqlQueryService = sqlQueryService;
         _reportDisplayer = reportDisplayer;
     }
-    
+
+    /**
+     * @throws IOException
+     * @throws SQLException
+     * @throws URISyntaxException
+     */
     @Override
     public void CreateReport() throws IOException, SQLException, URISyntaxException {
         List<ReportQuery> queryResultQueue = RunReportQueries();
         _reportDisplayer.displayReport(queryResultQueue);
     }
-    
+
+    /**
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     * @throws URISyntaxException
+     */
     private List<ReportQuery> RunReportQueries() throws IOException, SQLException, URISyntaxException {
         List<ReportQuery> parsedQueries = _queryParser.ParseQueries(SQL_PATH);
         for(ReportQuery query : parsedQueries) {
