@@ -14,9 +14,10 @@ import java.util.*;
 public class QueryParser implements IQueryParser {
 
     private final Map<String, String> userInputs;
+    private static final String PATH_TO_REPORT_CONFIG = "/report_configuration.json";
 
-    public QueryParser(UserInputParser userInputParser) {
-        userInputs = userInputParser.parseUserInput();
+    public QueryParser(IUserInputParser userInputParser) {
+        userInputs = userInputParser.parseUserInput(PATH_TO_REPORT_CONFIG);
     }
 
     @Override

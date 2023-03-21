@@ -3,81 +3,61 @@ package com.napier.sem.unit_tests;
 import com.napier.sem.IReportDisplayer;
 import com.napier.sem.ReportCreator;
 import com.napier.sem.database.ISqlQueryService;
+import com.napier.sem.models.ReportQuery;
 import com.napier.sem.parsers.IQueryParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-class ReportCreatorTest {
-    
-    @Mock
-    private Connection connectionMock;
-    
-    @Mock
-    private IQueryParser queryParserMock;
-    
-    @Mock
-    private ISqlQueryService sqlQueryServiceMock;
-    
-    @Mock
-    private IReportDisplayer reportDisplayerMock;
-    
-    @Mock
-    private File fileMock;
-    
+public class ReportCreatorTest {
+
+    private IQueryParser queryParser;
+    private ISqlQueryService sqlQueryService;
+    private IReportDisplayer reportDisplayer;
+    private Connection connection;
     private ReportCreator reportCreator;
-    
+
     @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        reportCreator = new ReportCreator(connectionMock, queryParserMock, sqlQueryServiceMock, reportDisplayerMock);
+    public void setUp() {
+        queryParser = mock(IQueryParser.class);
+        sqlQueryService = mock(ISqlQueryService.class);
+        reportDisplayer = mock(IReportDisplayer.class);
+        connection = mock(Connection.class);
+
+        reportCreator = new ReportCreator(connection, queryParser, sqlQueryService, reportDisplayer);
     }
-    
-    /*@Test
-    void createReport_shouldExecuteQueriesAndDisplayResults() throws IOException, SQLException {
-        // Arrange
-        List<Map<String, String>> parsedQueries = Collections.singletonList(Map.of("queryName", "query1", "query", "SELECT 1"));
-        List<Map<String, String>> expectedResults = Collections.singletonList(Map.of("queryName", "query1", "query", "SELECT 1", "result", "1"));
-        String filename = "test.sql";
-        String path = "/path/to/" + filename;
-        
-        when(fileMock.getAbsolutePath()).thenReturn(path);
-        when(fileMock.getName()).thenReturn(filename);
-        when(fileMock.isFile()).thenReturn(true);
-        
-        when(queryParserMock.ParseQueries(path)).thenReturn(parsedQueries);
-        when(sqlQueryServiceMock.ExecuteQuery(any(Connection.class), any(String.class))).thenReturn("1");
-        
-        // Act
-        reportCreator.CreateReport();
-        
-        // Assert
-        assertEquals(expectedResults.get(0).get("result"), parsedQueries.get(0).get("result"));
-    }*/
-    
+
     @Test
-    void createReport_shouldSkipDirectories() throws IOException, SQLException {
-        // Arrange
-        File sqlDirectoryMock = new File("/path/to/sql/");
-        File[] files = {sqlDirectoryMock};
-        
-        when(fileMock.isFile()).thenReturn(false);
-        when(fileMock.listFiles()).thenReturn(files);
-        
-        // Act
+    public void testCreateReport() throws IOException, SQLException, URISyntaxException {
+        List<ReportQuery> queryResultQueue = new ArrayList<>();
+        ReportQuery query1 = new ReportQuery("SELECT * FROM table1", "query1");
+        queryResultQueue.add(query1);
+        ReportQuery query2 = new ReportQuery("SELECT * FROM table2", "query2");
+        queryResultQueue.add(query2);
+
+        when(queryParser.ParseQueries("scripts.sql")).thenReturn(queryResultQueue);
+
+        when(sqlQueryService.executeQuery(connection, query1.getQuery()))
+              .thenReturn("result1");
+
+        when(sqlQueryService.executeQuery(connection, query2.getQuery()))
+              .thenReturn("result2");
+
         reportCreator.CreateReport();
-        
-        // Assert
-        // No exception should be thrown
+
+        verify(queryParser).ParseQueries("scripts.sql");
+
+        verify(sqlQueryService).executeQuery(connection, query1.getQuery());
+        verify(sqlQueryService).executeQuery(connection, query2.getQuery());
+
+        verify(reportDisplayer).displayReport(queryResultQueue);
     }
 }

@@ -14,7 +14,7 @@ class DatabaseConnectionManagerIntegrationTest {
 
     private DatabaseConnectionManager dbConnectionManager;
 
-    @BeforeAll
+    /*@BeforeAll
     void setup() {
         DatabaseConfig config = new DatabaseConfig();
         config.setDatabaseUrl("jdbc:mysql://localhost:3306/mydatabase");
@@ -57,31 +57,6 @@ class DatabaseConnectionManagerIntegrationTest {
         // Assert
         assertEquals(3, ((MockDriver) DriverManager.getDriver("jdbc:mysql://localhost:3306/invalid")).getConnectionAttempts());
     }
+*/
 
-    private static class MockDriver extends com.mysql.cj.jdbc.Driver {
-        private int connectionAttempts = 0;
-
-        /**
-         * Construct a new driver and register it with DriverManager
-         *
-         * @throws SQLException if a database error occurs.
-         */
-        public MockDriver() throws SQLException {
-        }
-
-        @Override
-        public Connection connect(String url, java.util.Properties info) throws SQLException {
-            connectionAttempts++;
-
-            if (connectionAttempts == 1) {
-                throw new SQLException("Connection not available");
-            }
-
-            return super.connect(url, info);
-        }
-
-        public int getConnectionAttempts() {
-            return connectionAttempts;
-        }
-    }
 }

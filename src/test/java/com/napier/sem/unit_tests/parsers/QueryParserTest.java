@@ -1,11 +1,14 @@
-package com.napier.sem.unit_tests;
+package com.napier.sem.unit_tests.parsers;
 
 import com.napier.sem.models.ReportQuery;
+import com.napier.sem.parsers.IUserInputParser;
 import com.napier.sem.parsers.QueryParser;
+import com.napier.sem.parsers.UserInputParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,15 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class QueryParserTest {
 
     private QueryParser queryParser;
+    private IUserInputParser userInputParser;
 
     @BeforeEach
     void setUp() {
-        queryParser = new QueryParser();
+        userInputParser = new UserInputParser();
+        queryParser = new QueryParser(userInputParser);
     }
 
     @Test
-    void testParseQueries() throws IOException {
-        String pathToQueries = "src/test/resources/test_queries.sql";
+    void testParseQueries() throws IOException, URISyntaxException {
+        String pathToQueries = "test_queries.sql";
         List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToQueries);
 
         assertEquals(2, parsedQueries.size());
@@ -36,8 +41,8 @@ class QueryParserTest {
     }
 
     @Test
-    void testParseQueriesWithEmptyFile() throws IOException {
-        String pathToEmptyFile = "src/test/resources/empty_test_queries.sql";
+    void testParseQueriesWithEmptyFile() throws IOException, URISyntaxException {
+        String pathToEmptyFile = "empty_test_queries.sql";
 
         List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToEmptyFile);
         assertTrue(parsedQueries.isEmpty());

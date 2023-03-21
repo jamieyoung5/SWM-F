@@ -19,8 +19,10 @@ class ReportDisplayerTest {
         List<ReportQuery> reportData = Collections.singletonList(
               new ReportQuery("query1", "SELECT 1", "1")
         );
-        String reportName = "testReport";
-        String expectedOutput = "========testReport=======\nSELECT 1: 1\n";
+        String expectedOutput = "========SELECT 1=======\n" +
+              "1\n" +
+              "\n" +
+              "\n";
     
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -28,7 +30,7 @@ class ReportDisplayerTest {
         ReportDisplayer reportDisplayer = new ReportDisplayer();
     
         // Act
-        reportDisplayer.displayReport(reportData, reportName);
+        reportDisplayer.displayReport(reportData);
     
         // Assert
         assertEquals(expectedOutput, outContent.toString());
