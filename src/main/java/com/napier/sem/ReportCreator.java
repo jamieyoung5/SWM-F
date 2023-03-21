@@ -18,7 +18,13 @@ public class ReportCreator implements IReportCreator {
     private final Connection _connection;
     
     private final String SQL_PATH = "scripts.sql";
-    
+
+    /**
+     * @param connection
+     * @param queryParser
+     * @param sqlQueryService
+     * @param reportDisplayer
+     */
     public ReportCreator(Connection connection, IQueryParser queryParser, ISqlQueryService sqlQueryService, IReportDisplayer reportDisplayer){
         _connection = connection;
         _queryParser = queryParser;
@@ -27,7 +33,6 @@ public class ReportCreator implements IReportCreator {
     }
 
     /**
-     * Generates and displays the full report
      * @throws IOException
      * @throws SQLException
      * @throws URISyntaxException
@@ -39,13 +44,10 @@ public class ReportCreator implements IReportCreator {
     }
 
     /**
-     * Runs all queries and parses them to generate the report content
-     * @return returns a list of report queries
      * @throws IOException
      * @throws SQLException
      * @throws URISyntaxException
      */
-    private List<ReportQuery> generateReport() throws IOException, SQLException, URISyntaxException {
         List<ReportQuery> parsedQueries = _queryParser.ParseQueries(SQL_PATH);
         for(ReportQuery query : parsedQueries) {
             String resultSet = _sqlQueryService.executeQuery(_connection, query.getQuery());
