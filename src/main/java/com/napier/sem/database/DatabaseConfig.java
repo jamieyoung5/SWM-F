@@ -11,8 +11,6 @@ public class DatabaseConfig {
     private final Properties properties;
 
     /**
-     * Loads the projects configuration file into a properties object
-     * the configuration file includes database connection details and secrets.
      * @throws IOException
      */
     public DatabaseConfig() throws IOException {
@@ -23,14 +21,23 @@ public class DatabaseConfig {
         fileInputStream.close();
     }
 
+    /**
+     * @return Database URL defined in properties file
+     */
     public String getDatabaseUrl(){
         return properties.getProperty("db.url");
     }
 
+    /**
+     * @return Database password defined in properties file
+     */
     public String getDatabasePassword(){
         return properties.getProperty("db.password");
     }
 
+    /**
+     * @return Database username defined in properties file
+     */
     public String getDatabaseUsername(){
         return properties.getProperty("db.username");
     }

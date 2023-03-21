@@ -8,13 +8,6 @@ public class SqlQueryService implements ISqlQueryService{
         
     }
 
-    /**
-     *
-     * @param connection Connection object gained from the DatabaseConnectionManager
-     * @param query the query to be executed
-     * @return The querys output as a string or a message if it was not able to execute
-     * @throws SQLException
-     */
     @Override
     public String executeQuery(Connection connection, String query) throws SQLException {
         Statement statement = connection.createStatement();
