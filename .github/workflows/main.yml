@@ -2,6 +2,21 @@ name: A workflow pushing the app
 on: push
 
 jobs:
+  UnitTests:
+    name: Unit Tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up JDK 18
+        uses: actions/setup-java@v2
+        with:
+          java-version: '18'
+          distribution: 'adopt'
+      - name: Unit Tests
+        run: mvn '-Dtest=com.napier.sem.unit_tests.*Test' test
   build:
     name: on push action
     runs-on: ubuntu-20.04
