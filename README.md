@@ -5,6 +5,7 @@ We will implement a program that builds reports based on data stored in a databa
 ## Programming standards
 
 This project follows the Oracle coding conventions, which you can find here 
+
 https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
 
 ## How to build
