@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class DatabaseConfig {
 
-    private static final String CONFIG_FILE = "/config.properties";
-    private final Properties properties;
+    private static final String CONFIG_FILE = "config.properties";
+    //private final Properties properties;
 
     /**
      * Loads the projects configuration file into a properties object
@@ -16,23 +16,26 @@ public class DatabaseConfig {
      * @throws IOException
      */
     public DatabaseConfig() throws IOException {
-        properties = new Properties();
+        /*properties = new Properties();
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream fileInputStream = classloader.getResourceAsStream(CONFIG_FILE);
         properties.load(fileInputStream);
-        fileInputStream.close();
+        fileInputStream.close();*/
     }
 
     public String getDatabaseUrl(){
-        return properties.getProperty("db.url");
+        return "jdbc:mysql://localhost:33060/world";
+              //properties.getProperty("db.url");
     }
 
     public String getDatabasePassword(){
-        return properties.getProperty("db.password");
+        return "example";
+              //properties.getProperty("db.password");
     }
 
     public String getDatabaseUsername(){
-        return properties.getProperty("db.username");
+        return "root";
+              //properties.getProperty("db.username");
     }
 
 }
