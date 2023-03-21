@@ -8,41 +8,31 @@ import java.util.Properties;
 public class DatabaseConfig {
 
     private static final String CONFIG_FILE = "config.properties";
-    //private final Properties properties;
+    private final Properties properties;
 
     /**
+     * Loads the projects configuration file into a properties object
+     * the configuration file includes database connection details and secrets.
      * @throws IOException
      */
     public DatabaseConfig() throws IOException {
-        /*properties = new Properties();
+        properties = new Properties();
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream fileInputStream = classloader.getResourceAsStream(CONFIG_FILE);
         properties.load(fileInputStream);
-        fileInputStream.close();*/
+        fileInputStream.close();
     }
 
-    /**
-     * @return Database URL defined in properties file
-     */
     public String getDatabaseUrl(){
-        return "jdbc:mysql://localhost:33060/world";
-              //properties.getProperty("db.url");
+        return properties.getProperty("db.url");
     }
 
-    /**
-     * @return Database password defined in properties file
-     */
     public String getDatabasePassword(){
-        return "example";
-              //properties.getProperty("db.password");
+        return properties.getProperty("db.password");
     }
 
-    /**
-     * @return Database username defined in properties file
-     */
     public String getDatabaseUsername(){
-        return "root";
-              //properties.getProperty("db.username");
+        return properties.getProperty("db.username");
     }
 
 }
