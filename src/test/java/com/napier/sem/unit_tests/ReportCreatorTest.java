@@ -26,7 +26,7 @@ public class ReportCreatorTest {
     private ReportCreator reportCreator;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws SQLException {
         queryParser = mock(IQueryParser.class);
         sqlQueryService = mock(ISqlQueryService.class);
         reportDisplayer = mock(IReportDisplayer.class);
