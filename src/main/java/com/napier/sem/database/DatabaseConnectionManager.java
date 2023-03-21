@@ -14,7 +14,8 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
 
     /**
-     * @return
+     *
+     * @return connection
      * @throws InterruptedException
      */
     //Try and create a connection to a given database
@@ -32,7 +33,11 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
                 
         return connection;
     }
-    
+
+    /**
+     * @return
+     * @throws InterruptedException
+     */
     //Attempt a certain amount of times to create a connection to a database
     private Connection EstablishDatabaseConnection() throws InterruptedException {
         int connectionAttempts = 0;
@@ -45,7 +50,10 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
                 
         return connection;
     }
-    
+
+    /**
+     * @return
+     */
     //Attempt to get a connection to a database
     private Connection ConnectionAttempt() {
         try {
@@ -54,7 +62,10 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
             return null;
         }     
     }
-    
+
+    /**
+     *
+     */
     // Make sure that the correct jdbc drivers are present
     private void VerifyDriver() {
         try {
