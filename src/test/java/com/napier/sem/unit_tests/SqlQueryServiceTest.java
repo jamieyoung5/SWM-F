@@ -1,6 +1,6 @@
-package com.napier.sem;
+package com.napier.sem.unit_tests;
 
-import org.junit.Before;
+import com.napier.sem.database.SqlQueryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ class SqlQueryServiceTest {
     @Test
     public void testExecuteQuery() throws SQLException {
         when(resultSet.toString()).thenReturn("Result Set");
-        String result = sqlQueryService.ExecuteQuery(connection, "SELECT * FROM table");
+        String result = sqlQueryService.executeQuery(connection, "SELECT * FROM table");
         assertEquals("Result Set", result);
     }
 }

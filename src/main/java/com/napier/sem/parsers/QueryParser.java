@@ -1,4 +1,4 @@
-package com.napier.sem;
+package com.napier.sem.parsers;
 
 import com.napier.sem.models.ReportQuery;
 
@@ -8,12 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import static java.util.Map.entry;
-
 public class QueryParser implements IQueryParser {
 
-    public QueryParser() {
+    private final Map<String, String> userInputs;
 
+    public QueryParser(UserInputParser userInputParser) {
+        userInputs = userInputParser.parseUserInput();
     }
 
     @Override
@@ -41,7 +41,18 @@ public class QueryParser implements IQueryParser {
     private ReportQuery SplitQueryFromName(String query){
         String[] splitQuery = query.split("\n", 2);
         String cleanedQueryName = splitQuery[0].substring(2, splitQuery[0].length() - 2);
+        String filledQuery = fillQueryInputFields(splitQuery[1]);
 
-        return new ReportQuery(splitQuery[1], cleanedQueryName);
+        return new ReportQuery(filledQuery, cleanedQueryName);
+    }
+
+    private String fillQueryInputFields(String query){
+        for (String key : userInputs.keySet()) {
+            String formattedKey = String.format("{%s}", key);
+            if (query.contains(formattedKey) && userInputs.containsKey(key)) {
+                query = query.replace(formattedKey, userInputs.get(key));
+            }
+        }
+        return query;
     }
 }

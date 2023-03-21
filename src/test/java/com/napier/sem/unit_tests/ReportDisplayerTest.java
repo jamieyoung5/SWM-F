@@ -1,5 +1,7 @@
-package com.napier.sem;
+package com.napier.sem.unit_tests;
 
+import com.napier.sem.ReportDisplayer;
+import com.napier.sem.models.ReportQuery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
@@ -14,11 +16,11 @@ class ReportDisplayerTest {
     @Test
     void displayReport() {
         // Arrange
-        List<Map<String, String>> reportData = Collections.singletonList(
-              Map.of("queryName", "query1", "query", "SELECT 1", "result", "1")
+        List<ReportQuery> reportData = Collections.singletonList(
+              new ReportQuery("query1", "SELECT 1", "1")
         );
         String reportName = "testReport";
-        String expectedOutput = "========testReport=======\n1\n";
+        String expectedOutput = "========testReport=======\nSELECT 1: 1\n";
     
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));

@@ -1,12 +1,12 @@
-package com.napier.sem;
+package com.napier.sem.unit_tests;
 
-import org.junit.jupiter.api.AfterEach;
+import com.napier.sem.models.ReportQuery;
+import com.napier.sem.parsers.QueryParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,24 +22,24 @@ class QueryParserTest {
     @Test
     void testParseQueries() throws IOException {
         String pathToQueries = "src/test/resources/test_queries.sql";
-        List<Map<String, String>> parsedQueries = queryParser.ParseQueries(pathToQueries);
+        List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToQueries);
 
         assertEquals(2, parsedQueries.size());
 
-        Map<String, String> firstQuery = parsedQueries.get(0);
-        assertEquals("Query1", firstQuery.get("queryName"));
-        assertEquals("SELECT * FROM table1;", firstQuery.get("query"));
+        ReportQuery firstQuery = parsedQueries.get(0);
+        assertEquals("Query1", firstQuery.getQueryName());
+        assertEquals("SELECT * FROM table1;", firstQuery.getQuery());
 
-        Map<String, String> secondQuery = parsedQueries.get(1);
-        assertEquals("Query2", secondQuery.get("queryName"));
-        assertEquals("SELECT * FROM table2;", secondQuery.get("query"));
+        ReportQuery secondQuery = parsedQueries.get(1);
+        assertEquals("Query2", secondQuery.getQueryName());
+        assertEquals("SELECT * FROM table2;", secondQuery.getQuery());
     }
 
     @Test
     void testParseQueriesWithEmptyFile() throws IOException {
         String pathToEmptyFile = "src/test/resources/empty_test_queries.sql";
 
-        List<Map<String, String>> parsedQueries = queryParser.ParseQueries(pathToEmptyFile);
+        List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToEmptyFile);
         assertTrue(parsedQueries.isEmpty());
     }
 }

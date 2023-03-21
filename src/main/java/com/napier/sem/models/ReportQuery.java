@@ -9,6 +9,12 @@ public class ReportQuery {
         this.query = query;
         this.queryName = queryName;
     }
+
+    public ReportQuery(String query, String queryName, String result){
+        this.query = query;
+        this.queryName = queryName;
+        this.result = result;
+    }
     
     public String getQuery() {
         return query;

@@ -1,14 +1,15 @@
-package com.napier.sem;
+package com.napier.sem.database;
 
 import java.sql.*;
 
 public class DatabaseConnectionManager implements IDatabaseConnectionManager {
-        
+
+    private final DatabaseConfig config;
     private static final String JDBC_SQL_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final int MAX_CONNECTION_ATTEMPTS = 3;
     
-    public DatabaseConnectionManager() {
-    
+    public DatabaseConnectionManager(DatabaseConfig config) {
+        this.config = config;
     }
     
     //Try and create a connection to a given database
@@ -40,7 +41,7 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     //Attempt to get a connection to a database
     private Connection ConnectionAttempt() {
         try {
-            return DriverManager.getConnection(Config.DATABASE_URL, Config.DATABASE_USER, Config.DATABASE_PASS);
+            return DriverManager.getConnection(config.getDatabaseUrl(), config.getDatabaseUsername(), config.getDatabasePassword());
         } catch (SQLException exception) {
             return null;
         }     
