@@ -20,8 +20,15 @@ public class QueryParser implements IQueryParser {
         userInputs = userInputParser.parseUserInput(PATH_TO_REPORT_CONFIG);
     }
 
+    /**
+     * Parses queries into an object storing the query, output and the name of the query
+     * @param pathToQueries the path to the sql file with all queries
+     * @return a parsed query
+     * @throws IOException
+     * @throws URISyntaxException
+     */
     @Override
-    public List<ReportQuery> ParseQueries(String pathToQueries) throws IOException, URISyntaxException {
+    public List<ReportQuery> ParseQueries(String pathToQueries) throws IOException {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream fileInputStream = classloader.getResourceAsStream(pathToQueries);
         
@@ -34,6 +41,11 @@ public class QueryParser implements IQueryParser {
         return Collections.emptyList();
     }
 
+    /**
+     * Iterates through all queries in a file, and parses each
+     * @param queries a list of queries as raw strings
+     * @return a list of parsed queries
+     */
     private List<ReportQuery> SplitAllParsedQueries(List<String> queries){
         List<ReportQuery> splitQueries = new ArrayList<>();
         for (String query : queries) {
@@ -44,6 +56,11 @@ public class QueryParser implements IQueryParser {
         return splitQueries;
     }
 
+    /**
+     * Parses a single query into a ReportQuery object
+     * @param query the query to be parsed
+     * @return a query Parsed into a ReportQuery object
+     */
     private ReportQuery SplitQueryFromName(String query){
         String[] splitQuery = query.split("\n", 2);
         String cleanedQueryName = splitQuery[0].substring(2, splitQuery[0].length() - 2);
@@ -52,6 +69,11 @@ public class QueryParser implements IQueryParser {
         return new ReportQuery(filledQuery, cleanedQueryName);
     }
 
+    /**
+     * Fills in any required user inputs in a particular query
+     * @param query the query to be filled
+     * @return a query with any user inputs filled
+     */
     private String fillQueryInputFields(String query){
         for (String key : userInputs.keySet()) {
             String formattedKey = String.format("{%s}", key);

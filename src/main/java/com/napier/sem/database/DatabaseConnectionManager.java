@@ -14,20 +14,12 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
 
     /**
-     *
-     * @return connection
-     * @throws InterruptedException
-     */
-    //Try and create a connection to a given database
     @Override
     public Connection CreateConnection() throws InterruptedException {
         VerifyDriver();
         Connection connection = EstablishDatabaseConnection();
                 
         if (connection == null) {
-            System.out.println(config.getDatabaseUrl());
-            System.out.println(config.getDatabasePassword());
-            System.out.println(config.getDatabaseUsername());
             throw new RuntimeException("Unable to make a connection to the database");
         }
                 
@@ -35,10 +27,6 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
 
     /**
-     * @return
-     * @throws InterruptedException
-     */
-    //Attempt a certain amount of times to create a connection to a database
     private Connection EstablishDatabaseConnection() throws InterruptedException {
         int connectionAttempts = 0;
         Connection connection;
@@ -52,9 +40,6 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
 
     /**
-     * @return
-     */
-    //Attempt to get a connection to a database
     private Connection ConnectionAttempt() {
         try {
             return DriverManager.getConnection(config.getDatabaseUrl(), config.getDatabaseUsername(), config.getDatabasePassword());
@@ -64,9 +49,6 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
 
     /**
-     *
-     */
-    // Make sure that the correct jdbc drivers are present
     private void VerifyDriver() {
         try {
             Class.forName(DatabaseConnectionManager.JDBC_SQL_DRIVER);

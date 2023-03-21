@@ -7,11 +7,10 @@ import java.util.Properties;
 
 public class DatabaseConfig {
 
-    private static final String CONFIG_FILE = "config.properties";
+    private static final String CONFIG_FILE = "/config.properties";
     private final Properties properties;
 
     /**
-     * Configures database parameters, pulling data from a properties file and creating a config object to hold it
      * @throws IOException
      */
     public DatabaseConfig() throws IOException {
