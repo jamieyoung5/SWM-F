@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.napier.sem"},{"l":"com.napier.sem.database"},{"l":"com.napier.sem.models"},{"l":"com.napier.sem.parsers"},{"l":"com.napier.sem.unit_tests"}];updateSearchResults();
