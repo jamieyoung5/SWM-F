@@ -3,6 +3,9 @@ package com.napier.sem.parsers;
 import com.napier.sem.models.ReportQuery;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,9 +20,11 @@ public class QueryParser implements IQueryParser {
     }
 
     @Override
-    public List<ReportQuery> ParseQueries(String pathToQueries) throws IOException {
-        Path file = Paths.get(pathToQueries);
-        String queryFileContent = new String(Files.readAllBytes(file));
+    public List<ReportQuery> ParseQueries(String pathToQueries) throws IOException, URISyntaxException {
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream fileInputStream = classloader.getResourceAsStream(pathToQueries);
+        
+        String queryFileContent = new String(fileInputStream.readAllBytes());
         if (queryFileContent.length() != 0){
             List<String> queries = List.of(queryFileContent.split("\n\n"));
             return SplitAllParsedQueries(queries);

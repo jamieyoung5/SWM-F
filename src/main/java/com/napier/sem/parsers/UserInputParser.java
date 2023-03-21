@@ -5,18 +5,20 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class UserInputParser {
 
-    private static final String PATH_TO_REPORT_CONFIG = "/home/jamie/git/SWM-F/report_configuration.json";
+    private static final String PATH_TO_REPORT_CONFIG = "report_configuration.json";
 
     public Map<String, String> parseUserInput(){
         JSONParser parser = new JSONParser();
         try {
-            Object obj = parser.parse(new FileReader(PATH_TO_REPORT_CONFIG));
+            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            Object obj = parser.parse(Arrays.toString(classloader.getResourceAsStream(PATH_TO_REPORT_CONFIG).readAllBytes()));
             JSONObject jsonObject = (JSONObject) obj;
 
             // Create a Map<String, Integer> to store the key-value pairs from the JSON file

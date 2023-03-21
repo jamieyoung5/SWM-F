@@ -7,17 +7,16 @@ import com.napier.sem.parsers.QueryParser;
 import com.napier.sem.parsers.UserInputParser;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.*;
 
 public class App {
-    public static void main(String[] args) throws SQLException, IOException, InterruptedException {
-        /*System.out.println("test");
+    public static void main(String[] args) throws SQLException, IOException, InterruptedException, URISyntaxException {
+        System.out.println("test");
         DatabaseConfig config = new DatabaseConfig();
         IDatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager(config);
         Connection connection = databaseConnectionManager.CreateConnection();
-        IReportCreator reportCreator = new ReportCreator(connection, new QueryParser(), new SqlQueryService(), new ReportDisplayer());
-        reportCreator.CreateReport();*/
-        UserInputParser userInputParser = new UserInputParser();
-        userInputParser.parseUserInput();
+        IReportCreator reportCreator = new ReportCreator(connection, new QueryParser(new UserInputParser()), new SqlQueryService(), new ReportDisplayer());
+        reportCreator.CreateReport();
     }
 }

@@ -6,6 +6,7 @@ import com.napier.sem.parsers.IQueryParser;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -18,7 +19,7 @@ public class ReportCreator implements IReportCreator {
     private final IReportDisplayer _reportDisplayer;
     private final Connection _connection;
     
-    private final String SQL_PATH = "/home/jamie/git/SWM-F/src/main/sql";
+    private final String SQL_PATH = "scripts.sql";
     
     public ReportCreator(Connection connection, IQueryParser queryParser, ISqlQueryService sqlQueryService, IReportDisplayer reportDisplayer){
         _connection = connection;
@@ -28,19 +29,13 @@ public class ReportCreator implements IReportCreator {
     }
     
     @Override
-    public void CreateReport() throws IOException, SQLException {
-        File pathToSqlFiles= new File(SQL_PATH);
-        File [] sqlFiles = pathToSqlFiles.listFiles();
-        for(int i = 0; i < Objects.requireNonNull(sqlFiles).length; i++){
-            if(sqlFiles[i].isFile()){
-                List<ReportQuery> queryResultQueue = RunQueryQueue(sqlFiles[i].getAbsolutePath());
-                _reportDisplayer.displayReport(queryResultQueue, sqlFiles[i].getName());
-            }
-        }
+    public void CreateReport() throws IOException, SQLException, URISyntaxException {
+        List<ReportQuery> queryResultQueue = RunReportQueries();
+        _reportDisplayer.displayReport(queryResultQueue);
     }
     
-    private List<ReportQuery> RunQueryQueue(String queryPath) throws IOException, SQLException {
-        List<ReportQuery> parsedQueries = _queryParser.ParseQueries(queryPath);
+    private List<ReportQuery> RunReportQueries() throws IOException, SQLException, URISyntaxException {
+        List<ReportQuery> parsedQueries = _queryParser.ParseQueries(SQL_PATH);
         for(ReportQuery query : parsedQueries) {
             String resultSet = _sqlQueryService.executeQuery(_connection, query.getQuery());
             query.setResult(resultSet.toString());
