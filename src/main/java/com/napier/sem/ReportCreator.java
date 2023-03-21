@@ -4,14 +4,12 @@ import com.napier.sem.database.ISqlQueryService;
 import com.napier.sem.models.ReportQuery;
 import com.napier.sem.parsers.IQueryParser;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
- 
+
 public class ReportCreator implements IReportCreator {
 
     private final IQueryParser _queryParser;
@@ -27,14 +25,27 @@ public class ReportCreator implements IReportCreator {
         _sqlQueryService = sqlQueryService;
         _reportDisplayer = reportDisplayer;
     }
-    
+
+    /**
+     * Generates and displays the full report
+     * @throws IOException
+     * @throws SQLException
+     * @throws URISyntaxException
+     */
     @Override
     public void CreateReport() throws IOException, SQLException, URISyntaxException {
-        List<ReportQuery> queryResultQueue = RunReportQueries();
+        List<ReportQuery> queryResultQueue = generateReport();
         _reportDisplayer.displayReport(queryResultQueue);
     }
-    
-    private List<ReportQuery> RunReportQueries() throws IOException, SQLException, URISyntaxException {
+
+    /**
+     * Runs all queries and parses them to generate the report content
+     * @return returns a list of report queries
+     * @throws IOException
+     * @throws SQLException
+     * @throws URISyntaxException
+     */
+    private List<ReportQuery> generateReport() throws IOException, SQLException, URISyntaxException {
         List<ReportQuery> parsedQueries = _queryParser.ParseQueries(SQL_PATH);
         for(ReportQuery query : parsedQueries) {
             String resultSet = _sqlQueryService.executeQuery(_connection, query.getQuery());

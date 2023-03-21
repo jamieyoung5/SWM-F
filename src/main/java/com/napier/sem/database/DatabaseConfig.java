@@ -10,6 +10,11 @@ public class DatabaseConfig {
     private static final String CONFIG_FILE = "config.properties";
     private final Properties properties;
 
+    /**
+     * Loads the projects configuration file into a properties object
+     * the configuration file includes database connection details and secrets.
+     * @throws IOException
+     */
     public DatabaseConfig() throws IOException {
         properties = new Properties();
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();

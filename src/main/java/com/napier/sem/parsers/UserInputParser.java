@@ -12,6 +12,11 @@ import com.google.gson.JsonObject;
 
 public class UserInputParser implements IUserInputParser{
 
+    /**
+     * Parses a json file containing user inputs into a map
+     * @param path path to the json file
+     * @return a mapped version of the json files content
+     */
     public Map<String, String> parseUserInput(String path){
         JsonObject jsonContents = readJsonFile(path);
 
@@ -27,6 +32,11 @@ public class UserInputParser implements IUserInputParser{
 
     }
 
+    /**
+     * reads the json file into a JsonObject
+     * @param pathToReportConfig path to the json file
+     * @return a JsonObject
+     */
     private JsonObject readJsonFile(String pathToReportConfig){
         Gson gson = new Gson();
         InputStream inputStream = JsonReader.class.getResourceAsStream(pathToReportConfig);
