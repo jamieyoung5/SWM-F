@@ -11,6 +11,7 @@ public class ReportDisplayer implements IReportDisplayer {
         for (ReportQuery queryResult : report) {
             System.out.println("========"+queryResult.getQueryName()+"=======");
             System.out.println(queryResult.getResult());
+            System.out.println("\n");
         }
     }
 

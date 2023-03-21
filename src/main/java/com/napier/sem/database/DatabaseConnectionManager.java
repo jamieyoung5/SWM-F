@@ -1,5 +1,6 @@
 package com.napier.sem.database;
 
+import java.io.Console;
 import java.sql.*;
 
 public class DatabaseConnectionManager implements IDatabaseConnectionManager {
@@ -19,6 +20,9 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
         Connection connection = EstablishDatabaseConnection();
                 
         if (connection == null) {
+            System.out.println(config.getDatabaseUrl());
+            System.out.println(config.getDatabasePassword());
+            System.out.println(config.getDatabaseUsername());
             throw new RuntimeException("Unable to make a connection to the database");
         }
                 

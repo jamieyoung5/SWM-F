@@ -32,19 +32,19 @@ SELECT city.Name, city.Population, c.Name FROM city JOIN country c on city.Count
 SELECT city.Name, city.Population, city.District FROM city where city.District = 'Toscana' ORDER BY Population desc;
 
 /*The top N populated cities in the world where N is provided by the user.*/
-SELECT Name, CountryCode, Population FROM city LIMIT UserInput();
+SELECT Name, CountryCode, Population FROM city LIMIT {topPopulatedCitiesInWorld};
 
 /*The top N populated cities in a continent where N is provided by the user.*/
-SELECT Name, Continent, Population FROM city WHERE Continent = 'Europe' UserInput();
+SELECT Name, Continent, Population FROM city WHERE Continent = 'Europe' {topPopulatedCitiesInContinent};
 
 /*The top N populated cities in a region where N is provided by the user.*/
-Select city.Name, city.Population, c.Region FROM city JOIN country c on city.CountryCode = c.Code where Region = 'Caribbean' UserInput();
+Select city.Name, city.Population, c.Region FROM city JOIN country c on city.CountryCode = c.Code where Region = 'Caribbean' {topPopulatedCitiesInRegion};
 
 /*The top N populated cities in a country where N is provided by the user.*/
-Select city.Name, city.Population, c.Name FROM city JOIN country c on city.CountryCode = c.Code where c.Name = 'Belgium' UserInput();
+Select city.Name, city.Population, c.Name FROM city JOIN country c on city.CountryCode = c.Code where c.Name = 'Belgium' {topPopulatedCitiesInCountry};
 
 /*The top N populated cities in a district where N is provided by the user.*/
-Select city.Name, city.Population, city.District FROM city where city.District = 'Toscana' UserInput();
+Select city.Name, city.Population, city.District FROM city where city.District = 'Toscana' {topPopulatedCitiesInDistrict};
 
 /*All the capital cities in the world organised by largest population to smallest.*/
 SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital ORDER BY city.Population desc;
@@ -56,13 +56,13 @@ SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.Count
 SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" ORDER BY city.Population desc;
 
 /*The top N populated capital cities in the world where N is provided by the user.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital LIMIT UserInput();
+SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital LIMIT {topPopulatedCapCitiesInWorld};
 
 /*The top N populated capital cities in a continent where N is provided by the user.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Continent = "Europe" LIMIT UserInput();
+SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Continent = "Europe" LIMIT {topPopulatedCitiesInContinent};
 
 /*The top N populated capital cities in a region where N is provided by the user.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" LIMIT UserInput();
+SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" LIMIT {topPopulatedCapCitiesInRegion};
 
 /*Population of the world*/
 SELECT SUM(Population) AS "World Population" FROM country;

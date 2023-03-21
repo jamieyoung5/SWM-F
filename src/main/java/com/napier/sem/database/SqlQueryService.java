@@ -13,9 +13,14 @@ public class SqlQueryService implements ISqlQueryService{
     @Override
     public String executeQuery(Connection connection, String query) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            String parsedQuery = parseQueryOutputToString(resultSet);
 
-        return parseQueryOutputToString(resultSet);
+            return parsedQuery;
+        }catch (Exception exception){
+            return "Couldn't execute query -> " + exception;
+        }
     }
 
 

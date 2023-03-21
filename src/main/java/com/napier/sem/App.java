@@ -12,7 +12,6 @@ import java.sql.*;
 
 public class App {
     public static void main(String[] args) throws SQLException, IOException, InterruptedException, URISyntaxException {
-        System.out.println("test");
         DatabaseConfig config = new DatabaseConfig();
         IDatabaseConnectionManager databaseConnectionManager = new DatabaseConnectionManager(config);
         Connection connection = databaseConnectionManager.CreateConnection();
