@@ -1,4 +1,4 @@
-package com.napier.sem.unit_tests.parsers;
+package com.napier.sem.unit_tests;
 
 import com.napier.sem.models.ReportQuery;
 import com.napier.sem.parsers.IUserInputParser;

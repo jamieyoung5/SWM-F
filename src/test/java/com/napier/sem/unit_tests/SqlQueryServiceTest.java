@@ -1,4 +1,4 @@
-package com.napier.sem.unit_tests.database;
+package com.napier.sem.unit_tests;
 
 import com.napier.sem.database.SqlQueryService;
 import org.junit.*;

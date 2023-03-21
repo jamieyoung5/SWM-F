@@ -1,10 +1,12 @@
-package com.napier.sem.parsers;
+package com.napier.sem.unit_tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Map;
 
+import com.napier.sem.parsers.IUserInputParser;
+import com.napier.sem.parsers.UserInputParser;
 import org.junit.Before;
 import org.junit.Test;
 
