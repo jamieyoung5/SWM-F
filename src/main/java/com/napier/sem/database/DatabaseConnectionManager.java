@@ -22,11 +22,11 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     public Connection CreateConnection() throws InterruptedException {
         VerifyDriver();
         Connection connection = EstablishDatabaseConnection();
-                
+        
         if (connection == null) {
             throw new RuntimeException("Unable to make a connection to the database");
         }
-                
+        
         return connection;
     }
 
@@ -43,7 +43,7 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
             connection = ConnectionAttempt();
             connectionAttempts++;
         } while (connectionAttempts < MAX_CONNECTION_ATTEMPTS && connection != null);
-                
+        
         return connection;
     }
 
@@ -53,10 +53,15 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
      */
     private Connection ConnectionAttempt() {
         try {
+            System.out.println("------");
+            System.out.println(config.getDatabasePassword());
+            System.out.println(config.getDatabaseUrl());
+            System.out.println(config.getDatabaseUsername());
+            System.out.println("------");
             return DriverManager.getConnection(config.getDatabaseUrl(), config.getDatabaseUsername(), config.getDatabasePassword());
         } catch (SQLException exception) {
             return null;
-        }     
+        }
     }
 
     /**
@@ -68,5 +73,5 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
         } catch (ClassNotFoundException exception) {
             throw new RuntimeException("SQL driver not found");
         }
-    }      
+    }
 }

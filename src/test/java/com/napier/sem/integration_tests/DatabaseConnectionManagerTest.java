@@ -1,5 +1,7 @@
-package com.napier.sem.database;
+package com.napier.sem.integration_tests;
 
+import com.napier.sem.database.DatabaseConfig;
+import com.napier.sem.database.DatabaseConnectionManager;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -10,16 +12,16 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class DatabaseConnectionManagerIntegrationTest {
+class DatabaseConnectionManagerTest {
 
     private DatabaseConnectionManager dbConnectionManager;
 
-    /*@BeforeAll
-    void setup() {
+    @BeforeAll
+    void setup() throws IOException {
         DatabaseConfig config = new DatabaseConfig();
-        config.setDatabaseUrl("jdbc:mysql://localhost:3306/mydatabase");
+        config.setDatabaseUrl("jdbc:mysql://localhost:33060/world");
         config.setDatabaseUsername("root");
-        config.setDatabasePassword("password");
+        config.setDatabasePassword("example");
         dbConnectionManager = new DatabaseConnectionManager(config);
     }
 
@@ -39,24 +41,11 @@ class DatabaseConnectionManagerIntegrationTest {
     void createConnection_shouldThrowException_whenDatabaseIsUnavailable() throws SQLException, IOException {
         // Arrange
         DatabaseConfig config = new DatabaseConfig();
+        config.setDatabaseUrl("test");
         DatabaseConnectionManager dbConnectionManager = new DatabaseConnectionManager(config);
 
         // Act & Assert
         assertThrows(RuntimeException.class, dbConnectionManager::CreateConnection);
     }
-
-    @Test
-    void createConnection_shouldRetry_whenDatabaseIsUnavailableAtFirst() throws SQLException, InterruptedException, IOException {
-        // Arrange
-        DatabaseConfig config = new DatabaseConfig();
-        DatabaseConnectionManager dbConnectionManager = new DatabaseConnectionManager(config);
-
-        // Act
-        assertThrows(RuntimeException.class, dbConnectionManager::CreateConnection);
-
-        // Assert
-        assertEquals(3, ((MockDriver) DriverManager.getDriver("jdbc:mysql://localhost:3306/invalid")).getConnectionAttempts());
-    }
-*/
-
+    
 }

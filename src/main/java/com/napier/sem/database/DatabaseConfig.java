@@ -6,7 +6,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class DatabaseConfig {
-
+    
+    
     private static final String CONFIG_FILE = "config.properties";
     private final Properties properties;
 
@@ -34,5 +35,17 @@ public class DatabaseConfig {
     public String getDatabaseUsername(){
         return properties.getProperty("db.username");
     }
-
+    
+    public void setDatabaseUrl(String url){
+        properties.setProperty("db.url", url);
+    }
+    
+    public void setDatabasePassword(String password){
+        properties.setProperty("db.password", password);
+    }
+    
+    public void setDatabaseUsername(String username){
+        properties.setProperty("db.username", username);
+    }
+    
 }

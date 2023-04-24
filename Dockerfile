@@ -1,4 +1,5 @@
 FROM openjdk:18
-COPY ./target/classes /tmp
-WORKDIR /tmp
-ENTRYPOINT ["java", "com.napier.sem.App"]
+COPY ./target/SWM-F.jar /app/SWM-F.jar
+WORKDIR /app
+ENTRYPOINT ["java", "-jar", "SWM-F.jar"]
+

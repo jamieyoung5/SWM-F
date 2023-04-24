@@ -4,7 +4,6 @@ services:
     build: .
     depends_on:
       - db
-    restart: always
   db:
     build: db/.
     command: --default-authentication-plugin=mysql_native_password

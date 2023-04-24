@@ -8,6 +8,7 @@ import com.napier.sem.parsers.UserInputParser;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.rmi.RemoteException;
 import java.sql.*;
 
 public class App {
