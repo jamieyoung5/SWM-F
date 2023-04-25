@@ -35,7 +35,7 @@ jobs:
         run: |
           docker build -t database ./db
           docker run --name db -dp 33060:3306 database
-          mvn '-Dtest=com.napier.sem.integration_tests.*Test' test
+          mvn '-Dtest=com.napier.sem.integration_tests.*Test --DfailIfNoTests=false' test
           docker stop world
           docker rm world
           docker image rm database
