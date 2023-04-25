@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="2" failures="0" name="com.napier.sem.unit_tests.SqlQueryServiceTest" time="1.834" errors="0" skipped="0">
+  <properties>
+    <property name="idea.version" value="2023.1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="java.vm.version" value="19.0.2+7-44"/>
+    <property name="sun.boot.library.path" value="C:\Users\Jamie.Young\.jdks\openjdk-19.0.2\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Jamie.Young\Documents\Github\SWM-F"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Jamie.Young\Documents\Github\SWM-F"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="19.0.2+7-44"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\JAMIE~1.YOU\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\231.8109.175\plugins\maven\lib\maven-event-listener.jar"/>
+    <property name="classworlds.conf" value="C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\231.8109.175\plugins\maven\lib\maven3\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="C:\Users\Jamie.Young\.jdks\openjdk-19.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files (x86)\dotnet\;C:\Program Files\nodejs\;C:\HashiCorp\Vagrant\bin;C:\ProgramData\chocolatey\bin;C:\Users\Jamie.Young\.cargo\bin;C:\Users\Jamie.Young\AppData\Local\Microsoft\WindowsApps;C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Jamie.Young\AppData\Roaming\npm;C:\Program Files\JetBrains\GoLand 2022.3.3\bin;;."/>
+    <property name="jansi.passthrough" value="true"/>
+    <property name="maven.conf" value="C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\231.8109.175\plugins\maven\lib\maven3/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="63.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\Jamie.Young"/>
+    <property name="user.timezone" value="Europe/London"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="19"/>
+    <property name="user.name" value="Jamie.Young"/>
+    <property name="java.class.path" value="C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\231.8109.175\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\231.8109.175\plugins\maven\lib\maven3\boot\plexus-classworlds.license"/>
+    <property name="java.vm.specification.version" value="19"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2023.1 package"/>
+    <property name="java.home" value="C:\Users\Jamie.Young\.jdks\openjdk-19.0.2"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="19.0.2"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="sun.stderr.encoding" value="UTF-8"/>
+    <property name="maven.home" value="C:\Users\Jamie.Young\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\231.8109.175\plugins\maven\lib\maven3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.version.date" value="2023-01-17"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.stdout.encoding" value="UTF-8"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="com.napier.sem.unit_tests.SqlQueryServiceTest" name="testExecuteQueryWithError" time="1.68"/>
+  <testcase classname="com.napier.sem.unit_tests.SqlQueryServiceTest" name="testExecuteQuery" time="0.154"/>
+</testsuite>
