@@ -20,6 +20,7 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
      */
     @Override
     public Connection CreateConnection() throws InterruptedException {
+        wait(5000);
         VerifyDriver();
         Connection connection = EstablishDatabaseConnection();
         
