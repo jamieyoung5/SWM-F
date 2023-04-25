@@ -4,6 +4,13 @@ We will implement a program using project management tools that builds reports b
 
 The specification of this assignment can be found [here](spec.md).
 
+# Statuses
+
+![Code Coverage](https://img.shields.io/badge/coverage-90%25-green)
+[![GitHub tag](https://img.shields.io/github/tag/jamieyoung5/SWM-F?include_prereleases=&sort=semver&color=blue)](https://github.com/jamieyoung5/SWM-F/releases/)
+[![issues - SWM-F](https://img.shields.io/github/issues/jamieyoung5/SWM-F)](https://github.com/jamieyoung5/SWM-F/issues)
+[![Releases](https://img.shields.io/github/release/jamieyoung5/SWM-F/all.svg?style=flat-square)](https://github.com/jamieyoung5/SWM-F/releases)
+
 ## Programming standards
 
 This project follows the Oracle coding conventions, which you can find here 
