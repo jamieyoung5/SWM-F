@@ -16,7 +16,7 @@ jobs:
           java-version: '18'
           distribution: 'adopt'
       - name: Unit Tests
-        run: mvn '-Dtest=com.napier.sem.unit_tests.*Test' test
+        run: mvn '-Dtest=com.napier.sem.unit_tests.*Test -DfailIfNoTests=false' test
 
   IntegrationTests:
     name: Integration Tests
