@@ -2,8 +2,8 @@ name: A workflow for my Hello World App
 on: push
 
 jobs:
-  UnitTests:
-    name: Unit Tests
+  Tests:
+    name: Tests
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
