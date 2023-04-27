@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Parses the database configuration file into a Properties object
+ */
 public class DatabaseConfig {
     
     

@@ -1,68 +1,68 @@
-/*All the countries in the world, organised by largest population to smallest.x*/
-SELECT Name, Continent, Population FROM country ORDER BY Population desc;
+/*All the countries in the world, organised by largest population to smallest.*/
+SELECT Code, Name, Continent, Region, Population, Capital FROM country ORDER BY Population desc;
 
 /*All the countries in a continent organised by largest population to smallest*/
-SELECT Name, Continent, Population FROM country WHERE Continent = 'Europe' ORDER BY Population desc ;
+SELECT Code, Name, Continent, Region, Population, Capital FROM country WHERE Continent = 'Europe' ORDER BY Population desc ;
 
 /*All the countries in a region organised by largest population to smallest.*/
-SELECT Name, Region, Population FROM country WHERE Region = 'Caribbean' ORDER BY Population desc;
+SELECT Code, Name, Continent, Region, Population, Capital FROM country WHERE Region = 'Caribbean' ORDER BY Population desc;
 
 /*The top N populated countries in the world where N is provided by the user.*/
-SELECT Name, Continent, Population FROM country ORDER BY Population desc LIMIT {topPopulatedCountriesInWorld};
+SELECT Code, Name, Continent, Region, Population, Capital FROM country ORDER BY Population desc LIMIT {topPopulatedCountriesInWorld};
 
 /*The top N populated countries in a continent where N is provided by the user.*/
-SELECT Name, Continent, Population FROM country WHERE Continent = 'Europe' ORDER BY Population desc LIMIT {topPopulatedCountriesInContinent};
+SELECT Code, Name, Continent, Region, Population, Capital FROM country WHERE Continent = 'Europe' ORDER BY Population desc LIMIT {topPopulatedCountriesInContinent};
 
 /*The top N populated countries in a region where N is provided by the user.*/
-SELECT Name, Region, Population FROM country WHERE Region = 'Caribbean' ORDER BY Population desc LIMIT {topPopulatedCountriesInRegion};
+SELECT Code, Name, Continent, Region, Population, Capital FROM country WHERE Region = 'Caribbean' ORDER BY Population desc LIMIT {topPopulatedCountriesInRegion};
 
 /*All the cities in the world organised by largest population to smallest*/
-SELECT Name, CountryCode, Population FROM city ORDER BY Population desc;
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) ORDER BY Population desc;
 
 /*All the cities in a continent organised by largest population to smallest.*/
-SELECT Name, Continent, Population FROM city WHERE Continent = 'Europe' ORDER BY Population desc;
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) WHERE Continent = 'Europe' ORDER BY Population desc;
 
 /*All the cities in a region organised by largest population to smallest.*/
-SELECT city.Name, city.Population, c.Region FROM city JOIN country c on city.CountryCode = c.Code where Region = 'Caribbean' ORDER BY Population desc;
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where Region = 'Caribbean' ORDER BY Population desc;
 
 /*All the cities in a country organised by largest population to smallest.*/
-SELECT city.Name, city.Population, c.Name FROM city JOIN country c on city.CountryCode = c.Code where c.Name = 'Belgium' ORDER BY Population desc;
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where country.Name = 'Belgium' ORDER BY Population desc;
 
 /*All the cities in a district organised by largest population to smallest.*/
-SELECT city.Name, city.Population, city.District FROM city where city.District = 'Toscana' ORDER BY Population desc;
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where city.District = 'Toscana' ORDER BY Population desc;
 
 /*The top N populated cities in the world where N is provided by the user.*/
-SELECT Name, CountryCode, Population FROM city LIMIT {topPopulatedCitiesInWorld};
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) LIMIT {topPopulatedCitiesInWorld};
 
 /*The top N populated cities in a continent where N is provided by the user.*/
-SELECT Name, Continent, Population FROM city WHERE Continent = 'Europe' {topPopulatedCitiesInContinent};
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) WHERE Continent = 'Europe' {topPopulatedCitiesInContinent};
 
 /*The top N populated cities in a region where N is provided by the user.*/
-Select city.Name, city.Population, c.Region FROM city JOIN country c on city.CountryCode = c.Code where Region = 'Caribbean' {topPopulatedCitiesInRegion};
+Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where Region = 'Caribbean' {topPopulatedCitiesInRegion};
 
 /*The top N populated cities in a country where N is provided by the user.*/
-Select city.Name, city.Population, c.Name FROM city JOIN country c on city.CountryCode = c.Code where c.Name = 'Belgium' {topPopulatedCitiesInCountry};
+Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where country.Name = 'Belgium' {topPopulatedCitiesInCountry};
 
 /*The top N populated cities in a district where N is provided by the user.*/
-Select city.Name, city.Population, city.District FROM city where city.District = 'Toscana' {topPopulatedCitiesInDistrict};
+Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where city.District = 'Toscana' {topPopulatedCitiesInDistrict};
 
 /*All the capital cities in the world organised by largest population to smallest.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital ORDER BY city.Population desc;
+SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital ORDER BY city.Population desc;
 
 /*All the capital cities in a continent organised by largest population to smallest.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Continent = "Europe" ORDER BY city.Population desc;
+SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Continent = "Europe" ORDER BY city.Population desc;
 
 /*All the capital cities in a region organised by largest to smallest.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" ORDER BY city.Population desc;
+SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" ORDER BY city.Population desc;
 
 /*The top N populated capital cities in the world where N is provided by the user.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital LIMIT {topPopulatedCapCitiesInWorld};
+SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital LIMIT {topPopulatedCapCitiesInWorld};
 
 /*The top N populated capital cities in a continent where N is provided by the user.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Continent = "Europe" LIMIT {topPopulatedCitiesInContinent};
+SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Continent = "Europe" LIMIT {topPopulatedCitiesInContinent};
 
 /*The top N populated capital cities in a region where N is provided by the user.*/
-SELECT c.Name, city.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" LIMIT {topPopulatedCapCitiesInRegion};
+SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital AND c.Region = "Caribbean" LIMIT {topPopulatedCapCitiesInRegion};
 
 /*The population of people, people living in cities, and people not living in cities in each continent.*/
 SELECT c.Continent,SUM(co.Population) AS 'Total Population',SUM(ci.Population) AS 'Population Living in Cities',SUM(co.Population - ci.Population) AS 'Population Not Living in Cities' FROM country AS co JOIN city AS ci ON co.Code = ci.CountryCode JOIN (SELECT DISTINCT Continent FROM country) AS c ON co.Continent = c.Continent GROUP BY c.Continent;
@@ -83,13 +83,14 @@ SELECT SUM(Population) AS "{populationOfContinent} Population" FROM country WHER
 SELECT SUM(Population) AS "{populationOfRegion} Population" FROM country WHERE Region = '{populationOfRegion}';
 
 /*Population of a Country*/
-SELECT (Population) AS "{populationOfCountry} Population" FROM country WHERE Name = '{populationOfCountry}';
+SELECT SUM(Population) AS "{populationOfCountry} Population" FROM country WHERE Name = '{populationOfCountry}';
 
 /*Population of a District*/
 SELECT SUM(Population) AS '{populationOfDistrict} population' FROM city WHERE District = "{populationOfDistrict}";
 
 /*Population of a city*/
-SELECT (Population) AS '{populationOfCity} population' FROM city WHERE Name = "{populationOfCity}";
+SELECT SUM(Population) AS '{populationOfCity} population' FROM city WHERE Name = "{populationOfCity}";
 
 /*Languages Report*/
-SELECT language.Language, SUM(country.Population * (language.Percentage / 100)) AS NumberSpeakers, (SUM(country.Population * (language.Percentage / 100)) / (SELECT SUM(Population) FROM country)) * 100 AS PercentageWorldPopulation FROM countrylanguage AS language JOIN country ON language.CountryCode = country.Code WHERE language.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') AND language.IsOfficial = 'T' GROUP BY language.Language ORDER BY NumberSpeakers DESC;
+SELECT language.Language, ROUND(SUM(country.Population * (language.Percentage / 100))) AS NumberSpeakers, ROUND((SUM(country.Population * (language.Percentage / 100)) / (SELECT SUM(Population) FROM country)) * 100, 2) AS PercentageWorldPopulation FROM countrylanguage AS language JOIN country ON language.CountryCode = country.Code WHERE language.Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') GROUP BY language.Language ORDER BY NumberSpeakers DESC;
+

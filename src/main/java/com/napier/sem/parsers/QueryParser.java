@@ -11,6 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Takes sql files and parses the contents into a list of objects, which contains information about the query
+ * such as its name, the actual query and the result of running the query.
+ */
 public class QueryParser implements IQueryParser {
 
     private final Map<String, String> userInputs;

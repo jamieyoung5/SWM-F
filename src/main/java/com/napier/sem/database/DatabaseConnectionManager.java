@@ -3,6 +3,9 @@ package com.napier.sem.database;
 import java.io.Console;
 import java.sql.*;
 
+/**
+ * Creates a connection to a database, given connection information from a config (resources/config.properties)
+ */
 public class DatabaseConnectionManager implements IDatabaseConnectionManager {
 
     private final DatabaseConfig config;
@@ -16,7 +19,6 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     /**
      * Initiates a connection to a database with a variable number of retry attempts
      * @return a connection object which other classes can use to execute sql statements
-     * @throws InterruptedException
      */
     @Override
     public Connection CreateConnection() throws InterruptedException {
@@ -53,11 +55,6 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
      */
     private Connection ConnectionAttempt() {
         try {
-            System.out.println("------");
-            System.out.println(config.getDatabasePassword());
-            System.out.println(config.getDatabaseUrl());
-            System.out.println(config.getDatabaseUsername());
-            System.out.println("------");
             return DriverManager.getConnection(config.getDatabaseUrl(), config.getDatabaseUsername(), config.getDatabasePassword());
         } catch (SQLException exception) {
             return null;
@@ -65,7 +62,7 @@ public class DatabaseConnectionManager implements IDatabaseConnectionManager {
     }
 
     /**
-     * Make sure that the correct jdbc dirvers are present
+     * Make sure that the correct jdbc drivers are present
      */
     private void VerifyDriver() {
         try {

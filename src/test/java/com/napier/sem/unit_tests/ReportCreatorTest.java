@@ -43,7 +43,7 @@ public class ReportCreatorTest {
         ReportQuery query2 = new ReportQuery("SELECT * FROM table2", "query2");
         queryResultQueue.add(query2);
 
-        when(queryParser.ParseQueries("scripts.sql")).thenReturn(queryResultQueue);
+        when(queryParser.ParseQueries("reports.sql")).thenReturn(queryResultQueue);
 
         when(sqlQueryService.executeQuery(connection, query1.getQuery()))
               .thenReturn("result1");
@@ -53,7 +53,7 @@ public class ReportCreatorTest {
 
         reportCreator.CreateReport();
 
-        verify(queryParser).ParseQueries("scripts.sql");
+        verify(queryParser).ParseQueries("reports.sql");
 
         verify(sqlQueryService).executeQuery(connection, query1.getQuery());
         verify(sqlQueryService).executeQuery(connection, query2.getQuery());

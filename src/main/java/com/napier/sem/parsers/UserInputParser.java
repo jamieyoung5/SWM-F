@@ -10,6 +10,9 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+/**
+ * Turns the report configuration json file into a map of string : string
+ */
 public class UserInputParser implements IUserInputParser{
 
     /**

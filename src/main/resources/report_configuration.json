@@ -9,5 +9,10 @@
   "topPopulatedCitiesInDistrict": "5",
   "topPopulatedCapCitiesInWorld": "5",
   "topPopulatedCapCitiesInContent": "5",
-  "topPopulatedCapCitiesInRegion": "5"
+  "topPopulatedCapCitiesInRegion": "5",
+  "populationOfContinent": "Europe",
+  "populationOfRegion": "Western Europe",
+  "populationOfCountry": "Netherlands",
+  "populationOfDistrict": "Kabol",
+  "populationOfCity": "Kabul"
 }

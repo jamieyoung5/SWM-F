@@ -1,5 +1,8 @@
 package com.napier.sem.models;
 
+/**
+ * Data structure holding information about a particular query for a report.
+ */
 public class ReportQuery {
     private final String query;
     private final String queryName;

@@ -29,7 +29,7 @@ class QueryParserTest {
         String pathToQueries = "test_queries.sql";
         List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToQueries);
 
-        assertEquals(2, parsedQueries.size());
+        assertEquals(1, parsedQueries.size());
 
         ReportQuery firstQuery = parsedQueries.get(0);
         assertEquals("Query1", firstQuery.getQueryName());

@@ -2,6 +2,9 @@ package com.napier.sem.database;
 
 import java.sql.*;
 
+/**
+ * Responsible for running SQL queries on a database and parsing the output of those queries
+ */
 public class SqlQueryService implements ISqlQueryService{
             
     public SqlQueryService(){
