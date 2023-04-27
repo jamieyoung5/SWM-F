@@ -23,6 +23,7 @@ public class QueryResultFormatterTest {
     @BeforeAll
     public static void setup() throws SQLException, IOException {
         DatabaseConfig databaseConfig = new DatabaseConfig();
+        databaseConfig.setDatabaseUrl("jdbc:mysql://localhost:33060/world");
         conn = DriverManager.getConnection(databaseConfig.getDatabaseUrl(), databaseConfig.getDatabaseUsername(), databaseConfig.getDatabasePassword());
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         resultSet = stmt.executeQuery("Select city.Name, country.Name AS \"Country\", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where Region = 'Caribbean' LIMIT 5;");

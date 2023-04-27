@@ -29,6 +29,7 @@ class QueriesIntegrationTest {
     @BeforeAll
     void setup() throws IOException, InterruptedException {
         DatabaseConfig config = new DatabaseConfig();
+        config.setDatabaseUrl("jdbc:mysql://localhost:33060/world");
         dbConnectionManager = new DatabaseConnectionManager(config);
         sqlQueryService = new SqlQueryService(new QueryResultFormatter());
         connection = dbConnectionManager.CreateConnection();
