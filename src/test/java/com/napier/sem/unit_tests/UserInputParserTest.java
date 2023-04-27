@@ -3,7 +3,7 @@ package com.napier.sem.unit_tests;
 import static org.junit.Assert.assertEquals;
 import java.util.Map;
 import com.napier.sem.parsers.UserInputParser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UserInputParserTest {
     

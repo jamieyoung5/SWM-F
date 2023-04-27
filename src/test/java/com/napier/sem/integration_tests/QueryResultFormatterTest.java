@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-//Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where Region = 'Caribbean' LIMIT {topPopulatedCitiesInRegion};
 
 public class QueryResultFormatterTest {
     private static Connection conn;

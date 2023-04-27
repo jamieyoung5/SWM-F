@@ -2,8 +2,8 @@ package com.napier.sem.unit_tests;
 
 import com.napier.sem.database.SqlQueryService;
 import com.napier.sem.display.IQueryResultFormatter;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class SqlQueryServiceTest {
@@ -31,7 +31,7 @@ public class SqlQueryServiceTest {
     
     private SqlQueryService sqlQueryService;
     
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         sqlQueryService = new SqlQueryService(queryResultFormatter);
