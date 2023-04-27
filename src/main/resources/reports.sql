@@ -35,16 +35,16 @@ SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM
 SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) LIMIT {topPopulatedCitiesInWorld};
 
 /*The top N populated cities in a continent where N is provided by the user.*/
-SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) WHERE Continent = 'Europe' {topPopulatedCitiesInContinent};
+SELECT city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) WHERE Continent = 'Europe' LIMIT {topPopulatedCitiesInContinent};
 
 /*The top N populated cities in a region where N is provided by the user.*/
-Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where Region = 'Caribbean' {topPopulatedCitiesInRegion};
+Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where Region = 'Caribbean' LIMIT {topPopulatedCitiesInRegion};
 
 /*The top N populated cities in a country where N is provided by the user.*/
-Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where country.Name = 'Belgium' {topPopulatedCitiesInCountry};
+Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where country.Name = 'Belgium' LIMIT {topPopulatedCitiesInCountry};
 
 /*The top N populated cities in a district where N is provided by the user.*/
-Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where city.District = 'Toscana' {topPopulatedCitiesInDistrict};
+Select city.Name, country.Name AS "Country", city.District, city.Population FROM city JOIN country ON (country.code = city.countrycode) where city.District = 'Toscana' LIMIT {topPopulatedCitiesInDistrict};
 
 /*All the capital cities in the world organised by largest population to smallest.*/
 SELECT city.Name, c.Name, city.Population FROM city JOIN country c on city.CountryCode = c.Code where city.ID = c.Capital ORDER BY city.Population desc;

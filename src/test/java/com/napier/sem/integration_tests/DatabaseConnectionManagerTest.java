@@ -19,9 +19,6 @@ class DatabaseConnectionManagerTest {
     @BeforeAll
     void setup() throws IOException {
         DatabaseConfig config = new DatabaseConfig();
-        config.setDatabaseUrl("jdbc:mysql://localhost:33060/world");
-        config.setDatabaseUsername("root");
-        config.setDatabasePassword("example");
         dbConnectionManager = new DatabaseConnectionManager(config);
     }
 

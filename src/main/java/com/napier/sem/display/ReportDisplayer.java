@@ -1,5 +1,6 @@
-package com.napier.sem;
+package com.napier.sem.display;
 
+import com.napier.sem.IReportDisplayer;
 import com.napier.sem.models.ReportQuery;
 
 import java.util.List;

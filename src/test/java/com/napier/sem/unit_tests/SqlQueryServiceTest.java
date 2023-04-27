@@ -1,6 +1,7 @@
 package com.napier.sem.unit_tests;
 
 import com.napier.sem.database.SqlQueryService;
+import com.napier.sem.display.QueryResultFormatter;
 import org.junit.*;
 import org.mockito.Mockito;
 
@@ -16,7 +17,7 @@ public class SqlQueryServiceTest {
 
     @Before
     public void setUp() {
-        sqlQueryService = new SqlQueryService();
+        sqlQueryService = new SqlQueryService(new QueryResultFormatter());
         connection = Mockito.mock(Connection.class);
     }
 

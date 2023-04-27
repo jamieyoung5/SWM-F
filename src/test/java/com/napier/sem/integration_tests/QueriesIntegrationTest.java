@@ -3,6 +3,7 @@ package com.napier.sem.integration_tests;
 import com.napier.sem.database.DatabaseConfig;
 import com.napier.sem.database.DatabaseConnectionManager;
 import com.napier.sem.database.SqlQueryService;
+import com.napier.sem.display.QueryResultFormatter;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
@@ -28,11 +29,8 @@ class QueriesIntegrationTest {
     @BeforeAll
     void setup() throws IOException, InterruptedException {
         DatabaseConfig config = new DatabaseConfig();
-        config.setDatabaseUrl("jdbc:mysql://localhost:33060/world");
-        config.setDatabaseUsername("root");
-        config.setDatabasePassword("example");
         dbConnectionManager = new DatabaseConnectionManager(config);
-        sqlQueryService = new SqlQueryService();
+        sqlQueryService = new SqlQueryService(new QueryResultFormatter());
         connection = dbConnectionManager.CreateConnection();
     }
     
