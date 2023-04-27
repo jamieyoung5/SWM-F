@@ -45,7 +45,7 @@ jobs:
           mvn -Dtest=com.napier.sem.integration_tests.QueryResultFormatterTest test   
           docker stop world
           docker rm world
-          docker image rm world
+          docker image rm database
       - name: CodeCov
         uses: codecov/codecov-action@v2
         with:
