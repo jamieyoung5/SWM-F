@@ -22,6 +22,7 @@ jobs:
           directory: ./target/site/jacoco
           flags: Unit Tests # optional
           verbose: true # optional (default = false)
+          version: "v0.1.15"
 
   IntegrationTests:
     name: Integration Tests
