@@ -6,7 +6,7 @@ The specification of this assignment can be found [here](spec.md).
 
 # Statuses
 
-![Code Coverage](https://img.shields.io/badge/coverage-90%25-green)
+[![codecov](https://codecov.io/gh/jamieyoung5/SWM-F/branch/develop/graph/badge.svg?token=LGJDRX8OYU)](https://codecov.io/gh/jamieyoung5/SWM-F)
 [![GitHub tag](https://img.shields.io/github/tag/jamieyoung5/SWM-F?include_prereleases=&sort=semver&color=blue)](https://github.com/jamieyoung5/SWM-F/releases/)
 [![issues - SWM-F](https://img.shields.io/github/issues/jamieyoung5/SWM-F)](https://github.com/jamieyoung5/SWM-F/issues)
 [![Releases](https://img.shields.io/github/release/jamieyoung5/SWM-F/all.svg?style=flat-square)](https://github.com/jamieyoung5/SWM-F/releases)
