@@ -19,8 +19,8 @@ class DatabaseConfigTest {
         config = new DatabaseConfig();
         
         assertEquals("url", config.getDatabaseUrl());
-        assertEquals("password", config.getDatabasePassword());
-        assertEquals("username", config.getDatabaseUsername());
+        assertEquals("example", config.getDatabasePassword());
+        assertEquals("root", config.getDatabaseUsername());
     }
     
     
