@@ -51,8 +51,9 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           directory: ./target/site/jacoco
-          flags: Integration Tests
-          verbose: true
+          flags: Integration Tests # optional
+          verbose: true # optional (default = false)
+          version: "v0.1.15"
   build:
     name: Build Run in Docker and Deploy Release
     runs-on: ubuntu-20.04
