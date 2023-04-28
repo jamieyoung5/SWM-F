@@ -20,7 +20,7 @@ public class ReportCreator implements IReportCreator {
     private final IReportDisplayer _reportDisplayer;
     private final Connection _connection;
     
-    private final String SQL_PATH = "reports.sql";
+    private static final String SQL_PATH = "reports.sql";
     
     public ReportCreator(Connection connection, IQueryParser queryParser, ISqlQueryService sqlQueryService, IReportDisplayer reportDisplayer) throws SQLException {
         _connection = connection;

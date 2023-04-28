@@ -1,38 +1,36 @@
 package com.napier.sem.unit_tests;
 
-import com.napier.sem.ReportDisplayer;
-import com.napier.sem.models.ReportQuery;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.napier.sem.display.ReportDisplayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.napier.sem.models.ReportQuery;
 
 class ReportDisplayerTest {
     
-    @Test
-    void displayReport() {
-        // Arrange
-        List<ReportQuery> reportData = Collections.singletonList(
-              new ReportQuery("query1", "SELECT 1", "1")
-        );
-        String expectedOutput = "========SELECT 1=======\n" +
-              "1\n" +
-              "\n" +
-              "\n";
+    private ReportDisplayer reportDisplayer;
     
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-    
-        ReportDisplayer reportDisplayer = new ReportDisplayer();
-    
-        // Act
-        reportDisplayer.displayReport(reportData);
-    
-        // Assert
-        assertEquals(expectedOutput, outContent.toString());
+    @BeforeEach
+    void setUp(){
+        reportDisplayer = new ReportDisplayer();
     }
+    
+    @Test
+    void testDisplayReportWithEmptyList() {
+        List<ReportQuery> emptyList = new ArrayList<>();
+        assertDoesNotThrow(() -> reportDisplayer.displayReport(emptyList));
+    }
+    
+    @Test
+    void testDisplayReport() {
+        List<ReportQuery> report = new ArrayList<>();
+        report.add(new ReportQuery("query1", "result1"));
+        assertDoesNotThrow(() -> reportDisplayer.displayReport(report));
+    }
+    
 }

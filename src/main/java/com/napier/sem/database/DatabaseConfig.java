@@ -43,12 +43,4 @@ public class DatabaseConfig {
         properties.setProperty("db.url", url);
     }
     
-    public void setDatabasePassword(String password){
-        properties.setProperty("db.password", password);
-    }
-    
-    public void setDatabaseUsername(String username){
-        properties.setProperty("db.username", username);
-    }
-    
 }

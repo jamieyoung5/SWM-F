@@ -67,7 +67,8 @@ public class QueryParser implements IQueryParser {
      */
     private ReportQuery SplitQueryFromName(String query){
         String[] splitQuery = query.split("\n", 2);
-        String cleanedQueryName = splitQuery[0].substring(2, splitQuery[0].length() - 2);
+        String cleanedQueryName = splitQuery[0].replace("\r", "").replace("\n", "");
+        cleanedQueryName = cleanedQueryName.substring(2, cleanedQueryName.length() - 2);
         String filledQuery = fillQueryInputFields(splitQuery[1]);
 
         return new ReportQuery(filledQuery, cleanedQueryName);

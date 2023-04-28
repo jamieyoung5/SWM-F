@@ -1,5 +1,5 @@
-/*Query1*/
-SELECT * FROM table1;
+/*Example query*/
+SELECT * FROM example;
 
-/*Query2*/
-SELECT * FROM table2;
+/*Example query 2*/
+SELECT * FROM example2;

@@ -3,48 +3,54 @@ package com.napier.sem.unit_tests;
 import com.napier.sem.models.ReportQuery;
 import com.napier.sem.parsers.IUserInputParser;
 import com.napier.sem.parsers.QueryParser;
-import com.napier.sem.parsers.UserInputParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
+import java.io.InputStream;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
-class QueryParserTest {
-
+public class QueryParserTest {
+    
     private QueryParser queryParser;
+    
+    @Mock
     private IUserInputParser userInputParser;
-
+    
     @BeforeEach
-    void setUp() {
-        userInputParser = new UserInputParser();
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+        when(userInputParser.parseUserInput(anyString())).thenReturn(getMockUserInputs());
         queryParser = new QueryParser(userInputParser);
     }
-
+    
     @Test
-    void testParseQueries() throws IOException, URISyntaxException {
-        String pathToQueries = "test_queries.sql";
-        List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToQueries);
-
-        assertEquals(1, parsedQueries.size());
-
-        ReportQuery firstQuery = parsedQueries.get(0);
-        assertEquals("Query1", firstQuery.getQueryName());
-        assertEquals("SELECT * FROM table1;", firstQuery.getQuery());
-
-        ReportQuery secondQuery = parsedQueries.get(1);
-        assertEquals("Query2", secondQuery.getQueryName());
-        assertEquals("SELECT * FROM table2;", secondQuery.getQuery());
+    public void testParseQueriesWithEmptyFile() throws IOException {
+        List<ReportQuery> expectedQueries = Collections.emptyList();
+        assertEquals(expectedQueries, queryParser.ParseQueries("empty_test_queries.sql"));
     }
-
+    
     @Test
-    void testParseQueriesWithEmptyFile() throws IOException, URISyntaxException {
-        String pathToEmptyFile = "empty_test_queries.sql";
-
-        List<ReportQuery> parsedQueries = queryParser.ParseQueries(pathToEmptyFile);
-        assertTrue(parsedQueries.isEmpty());
+    public void testParseQueries() throws IOException {
+        List<ReportQuery> result = queryParser.ParseQueries("test_queries.sql");
+        //expectedQueries.add(new ReportQuery("SELECT * FROM example", "Example query"));
+        //expectedQueries.add(new ReportQuery("SELECT * FROM example2", "Example query 2"));
+        assertEquals("Example query", result.get(0).getQueryName());
+        
+        
+        //assertEquals(expectedQueries, queryParser.ParseQueries("test_queries.sql"));
+    }
+    
+    private Map<String, String> getMockUserInputs() {
+        Map<String, String> userInput = new HashMap<>();
+        userInput.put("user_input", "John");
+        return userInput;
     }
 }

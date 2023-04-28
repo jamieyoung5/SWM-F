@@ -1,60 +1,65 @@
 package com.napier.sem.unit_tests;
 
 import com.napier.sem.database.SqlQueryService;
-import org.junit.*;
-import org.mockito.Mockito;
+import com.napier.sem.display.IQueryResultFormatter;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class SqlQueryServiceTest {
-
-    private SqlQueryService sqlQueryService;
+    
+    @Mock
+    private IQueryResultFormatter queryResultFormatter;
+    
+    @Mock
     private Connection connection;
-
-    @Before
-    public void setUp() {
-        sqlQueryService = new SqlQueryService();
-        connection = Mockito.mock(Connection.class);
+    
+    @Mock
+    private Statement statement;
+    
+    @Mock
+    private ResultSet resultSet;
+    
+    private SqlQueryService sqlQueryService;
+    
+    @BeforeEach
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        sqlQueryService = new SqlQueryService(queryResultFormatter);
     }
-
+    
     @Test
     public void testExecuteQuery() throws SQLException {
-        // Setup mock ResultSet with sample data
-        ResultSet resultSet = Mockito.mock(ResultSet.class);
-        ResultSetMetaData resultSetMetaData = Mockito.mock(ResultSetMetaData.class);
-        when(resultSet.getMetaData()).thenReturn(resultSetMetaData);
-        when(resultSetMetaData.getColumnCount()).thenReturn(2);
-        when(resultSetMetaData.getColumnName(1)).thenReturn("col1");
-        when(resultSetMetaData.getColumnName(2)).thenReturn("col2");
-        when(resultSet.next()).thenReturn(true).thenReturn(false);
-        when(resultSet.getString(1)).thenReturn("value1");
-        when(resultSet.getString(2)).thenReturn("value2");
-
-        // Setup mock Statement to return mock ResultSet
-        Statement statement = Mockito.mock(Statement.class);
-        when(connection.createStatement()).thenReturn(statement);
-        when(statement.executeQuery("SELECT * FROM table")).thenReturn(resultSet);
-
-        // Execute query and verify result
-        String result = sqlQueryService.executeQuery(connection, "SELECT * FROM table");
-        String expected = "col1\tcol2\t\nvalue1\tvalue2\t\n";
-        assertEquals(expected, result);
+        String query = "SELECT * FROM countries";
+        String expectedResult = "test result";
+        
+        when(connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY)).thenReturn(statement);
+        when(statement.executeQuery(query)).thenReturn(resultSet);
+        when(queryResultFormatter.parseQueryOutputToString(resultSet)).thenReturn(expectedResult);
+        
+        String result = sqlQueryService.executeQuery(connection, query);
+        
+        assertEquals(expectedResult, result);
     }
-
-
+    
     @Test
-    public void testExecuteQueryWithError() throws SQLException {
-        // Setup mock Statement to throw SQLException
-        Statement statement = Mockito.mock(Statement.class);
-        when(connection.createStatement()).thenReturn(statement);
-        when(statement.executeQuery("INVALID QUERY")).thenThrow(new SQLException("Invalid query"));
-
-        // Execute query and verify error message
-        String result = sqlQueryService.executeQuery(connection, "INVALID QUERY");
-        String expected = "Couldn't execute query -> java.sql.SQLException: Invalid query";
-        assertEquals(expected, result);
+    public void testExecuteQueryWithException() throws SQLException {
+        String query = "SELECT * FROM countries";
+        
+        when(connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY)).thenReturn(statement);
+        when(statement.executeQuery(query)).thenThrow(SQLException.class);
+        
+        String result = sqlQueryService.executeQuery(connection, query);
+        
+        assertEquals("Couldn't execute query -> java.sql.SQLException", result);
     }
 }
