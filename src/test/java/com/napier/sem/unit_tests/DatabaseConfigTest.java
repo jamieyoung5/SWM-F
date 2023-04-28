@@ -15,7 +15,7 @@ class DatabaseConfigTest {
     }
     
     @Test
-    public void DataBaseConfigConstructor() throws IOException {
+    public void testDataBaseConfigConstructor() throws IOException {
         config = new DatabaseConfig();
         
         assertEquals("url", config.getDatabaseUrl());
